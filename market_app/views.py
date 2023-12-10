@@ -1,6 +1,7 @@
 # example/views.py
 from datetime import datetime
 from django.shortcuts import render,redirect
+from django.urls import reverse_lazy,reverse
 from django.http import HttpResponse
 from items.models import Category,Item
 from .forms import SignUp
@@ -21,13 +22,13 @@ def contact(request):
 
 def SignUPView(request):
    
-    if request.POST:
+    if request.method=='POST':
         form=SignUp(request.POST)
 
         if form.is_valid():
             form.save()
 
-            redirect('/contact')
+            return redirect('/contact/')
     else:
          form=SignUp()        
             

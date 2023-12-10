@@ -3,7 +3,9 @@
 {% block title %}Sign Up{% endblock title %}
 
 {% block content %}
-  <form action="" method="post">
+  
+  <form action="" method="POST">
+       {% csrf_token %}
     {{form.non_fields_erros}}
     <div class="mb-3">
         <label for="" class="inline-block mb-2">Username</label><br>
