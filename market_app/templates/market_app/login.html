@@ -1,0 +1,23 @@
+{% extends "market_app/base.html" %}
+
+{% block title %}Sign In{% endblock title %}
+
+{% block content %}
+  
+  <form action="" method="POST">
+       {% csrf_token %}
+    {{form.non_fields_erros}}
+    <div class="mb-3">
+        <label for="" class="inline-block mb-2">Username</label><br>
+        {{form.username}}
+
+    <div class="mb-3">
+        <label for="" class="inline-block mb-2">Password</label><br>
+        {{form.password}}
+    </div>
+
+    <button class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Submit</button>
+  </form>
+
+
+{% endblock  %}
