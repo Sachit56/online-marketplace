@@ -4,20 +4,25 @@ from django.contrib.auth.models import User
 
 
 class SignUp(UserCreationForm):
-    username=forms.CharField(widget=forms.TextInput(attrs={
+    class Meta:
+        model=User
+        fields=['username','email','password1','password2']
+    username=forms.CharField(max_length=100,widget=forms.TextInput(attrs={
         'placeholder':'Your username',
         'class':'w-full py-4 px-6 rounded-xl'
     }))
-    email=forms.EmailField(widget=forms.TextInput(attrs={
+    email=forms.EmailField(max_length=100,widget=forms.TextInput(attrs={
         'placeholder':'Email',
         'class':'w-full py-4 px-6 rounded-xl'
     }))
-    password=forms.CharField(widget=forms.TextInput(attrs={
+    password1=forms.CharField(max_length=100,widget=forms.TextInput(attrs={
         'placeholder':'Password',
         'class':'w-full py-4 px-6 rounded-xl'
     }))
+    password2=forms.CharField(max_length=100,widget=forms.TextInput(attrs={
+        'placeholder':'Re-enter Password',
+        'class':'w-full py-4 px-6 rounded-xl'
+    }))
 
-    class Meta:
-        model=User
-        fields="__all__"
+
     

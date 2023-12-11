@@ -17,23 +17,24 @@ def index(request):
 
     return render(request,'market_app/index.html',context=context)
 
-def contact(request):
+def ContactView(request):
     return render(request,'market_app/contact.html')    
 
+
+
+
 def SignUPView(request):
-   
-    if request.method=='POST':
-        form=SignUp(request.POST)
+    if request.method == 'POST':
+        form = SignUp(request.POST)
 
         if form.is_valid():
-            form.save()
-
-            return redirect('/contact/')
+            print(form.save())
+            # Use the view name 'contact' in reverse
+            return redirect(reverse('market_app:contact_form'))
+        else:
+            print(form.errors)
+    
     else:
-         form=SignUp()        
-            
+        form = SignUp()
 
-
-    return render(request,'market_app/signup.html',{
-        'form':form
-    })
+    return render(request, 'market_app/signup.html', {'form': form})
