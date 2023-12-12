@@ -32,6 +32,10 @@
               <a href="{% url "items:delete_item" item.id %}" class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white"><Button>Delete</Button></a>
             </div>
 
+            <div class="p-6 bg-white rounded-b-xl">
+              <a href="{% url "items:edit_item" item.id %}" class="py-4 px-8 text-lg bg-red-500 hover:bg-teal-700 rounded-xl text-white"><Button>Edit</Button></a>
+            </div>
+
         </div>
 
     </div>

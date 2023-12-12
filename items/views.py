@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Item
 from django.contrib.auth.decorators import login_required
-from .forms import ItemForm
+from .forms import ItemForm,EditItemForm
 from django.urls import reverse
 
 # Create your views here.
@@ -30,6 +30,31 @@ def AddItemView(request):
             return redirect(reverse('items:items_detail',args=[item.pk]))
     else:
         form=ItemForm()
+            
+
+    
+
+    return render(request,'items/add_item.html',{
+        'form':form
+    })
+
+@login_required
+def EditItemView(request,pk):
+    item=get_object_or_404(Item,pk=pk,created_by=request.user)
+    if request.POST:
+        form=EditItemForm(request.POST,request.FILES,instance=item)
+
+        if form.is_valid():
+            try:
+                item = form.save()
+                item.save()
+            except Exception as e:
+                print(f"Exception during file upload: {e}")
+
+
+            return redirect(reverse('items:edit_detail',args=[item.pk]))
+    else:
+        form=EditItemForm(instance=item)
             
 
     
