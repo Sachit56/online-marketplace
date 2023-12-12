@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect
 from items.models import Item
 from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 @login_required
@@ -10,3 +11,9 @@ def DashboardView(request):
     return render(request,'dashboard/index.html',{
         'items':items
     })
+
+def DeleteView(request,pk):
+    item=get_object_or_404(Item,pk=pk,created_by=request.user)
+    item.delete()
+
+    return redirect('dashboard:index')

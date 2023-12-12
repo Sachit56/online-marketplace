@@ -37,3 +37,10 @@ def AddItemView(request):
     return render(request,'items/add_item.html',{
         'form':form
     })
+
+@login_required
+def DeleteView(request,pk):
+    item=get_object_or_404(Item,pk=pk,created_by=request.user)
+    item.delete()
+
+    return redirect(reverse('dashboard:dashboard'))
