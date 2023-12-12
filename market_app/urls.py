@@ -11,6 +11,7 @@ from .forms import LogIn
 urlpatterns = [
     path('', index),
     path('items/',include('items.urls')),
+    path('dashboard/',include('dashboard.urls')),
     path('contact/',ContactView,name='contact_form'),
     path('signup/',SignUPView,name='sign_up'),
     path('login/',auth_views.LoginView.as_view(template_name='market_app/login.html',authentication_form=LogIn))
